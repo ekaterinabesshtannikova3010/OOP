@@ -1,6 +1,5 @@
 import pytest
 from src.product import Product
-from src.category import Category
 
 
 def test_product_price_setter_positive():
