@@ -1,4 +1,3 @@
-
 class Product:
     def __init__(self, name, description, price, quantity):
         self.name = name
@@ -30,7 +29,39 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
+        if type(self) == type(other):
+            total_cost = (self.price * self.quantity) + (other.price * other.quantity)
+            return total_cost
+        else:
+            raise TypeError
+
+    def __add__(self, other):
         if isinstance(other, Product):
             total_cost = (self.price * self.quantity) + (other.price * other.quantity)
             return total_cost
         return NotImplemented
+
+    @classmethod
+    def add_product(cls, product_list, new_product):
+        if isinstance(new_product, cls):
+            product_list.append(new_product)
+            print(f"{new_product.name} has been added to the category.")
+        else:
+            print("Only instances of the 'Product' class or its subclasses can be added to this category.")
+
+
+class Smartphone(Product):
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    def __init__(self, name, description, price, quantity, country, germination_period, color):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
