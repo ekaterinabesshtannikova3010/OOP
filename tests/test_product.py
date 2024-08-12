@@ -1,4 +1,4 @@
-from src.product import Product, Smartphone, LawnGrass
+from src.product import BaseProduct, Product, ProductCreationInfo, Smartphone, LawnGrass
 import pytest
 
 
@@ -55,6 +55,36 @@ def test_smartphone_init():
 def test_lawngrass_init():
     grass = LawnGrass("Lawn Grass1", "", 20, 7, "USA", "2 weeks", "green")
     assert grass.country == "USA"
+
+
+def test_product_creation_info():
+    product = Product("Продукт1", "Описание продукта", 1200, 10)
+    assert isinstance(product, ProductCreationInfo)
+    assert isinstance(product, BaseProduct)
+    assert product.name == "Продукт1"
+    assert product.description == "Описание продукта"
+    assert product.price == 1200
+    assert product.quantity == 10
+
+
+def test_smartphone_creation_info():
+    smartphone = Smartphone("iPhone 12", "Новейший смартфон", 79999, 50, 0.95, "iPhone 12", 128, "Черный")
+    assert isinstance(smartphone, ProductCreationInfo)
+    assert isinstance(smartphone, BaseProduct)
+    assert smartphone.name == "iPhone 12"
+    assert smartphone.description == "Новейший смартфон"
+    assert smartphone.price == 79999
+    assert smartphone.quantity == 50
+
+
+def test_lawn_grass_creation_info():
+    lawn_grass = LawnGrass("Газонная трава", "Высококачественная газонная трава", 500, 20, "Россия", 14, "Зеленый")
+    assert isinstance(lawn_grass, ProductCreationInfo)
+    assert isinstance(lawn_grass, BaseProduct)
+    assert lawn_grass.name == "Газонная трава"
+    assert lawn_grass.description == "Высококачественная газонная трава"
+    assert lawn_grass.price == 500
+    assert lawn_grass.quantity == 20
 
 
 if __name__ == "__main__":
