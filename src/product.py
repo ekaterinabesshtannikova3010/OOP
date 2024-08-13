@@ -33,25 +33,6 @@ class BaseProduct(ABC):
             return total_cost
         return NotImplemented
 
-    @classmethod
-    @abstractmethod
-    def new_product(cls, product_info: dict):
-        return cls(
-            name=product_info.get("name"),
-            description=product_info.get("description"),
-            price=product_info.get("price"),
-            quantity=product_info.get("quantity")
-        )
-
-    @classmethod
-    @abstractmethod
-    def add_product(cls, product_list, new_product):
-        if isinstance(new_product, cls):
-            product_list.append(new_product)
-            print(f"{new_product.name} has been added to the category.")
-        else:
-            print("Only instances of the 'Product' class or its subclasses can be added to this category.")
-
 
 class ProductCreationInfo:
     def __init__(self, name, description, price, quantity):
