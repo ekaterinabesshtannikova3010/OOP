@@ -87,5 +87,36 @@ def test_lawn_grass_creation_info():
     assert lawn_grass.quantity == 20
 
 
+@pytest.fixture
+def product_data():
+    return {
+        "name": "Test Product",
+        "description": "This is a test product",
+        "price": 100,
+        "quantity": 10
+    }
+
+
+def test_create_product_with_zero_quantity(product_data):
+    product_data["quantity"] = 0
+    with pytest.raises(ValueError) as exc_info:
+        Product(**product_data)
+    assert str(exc_info.value) == "Товар с нулевым количеством не может быть добавлен"
+
+
+def test_create_smartphone_with_zero_quantity(product_data):
+    product_data["quantity"] = 0
+    with pytest.raises(ValueError) as exc_info:
+        Smartphone(**product_data, efficiency=90, model="iPhone 12", memory=128, color="Black")
+    assert str(exc_info.value) == "Товар с нулевым количеством не может быть добавлен"
+
+
+def test_create_lawn_grass_with_zero_quantity(product_data):
+    product_data["quantity"] = 0
+    with pytest.raises(ValueError) as exc_info:
+        LawnGrass(**product_data, country="USA", germination_period=7, color="Green")
+    assert str(exc_info.value) == "Товар с нулевым количеством не может быть добавлен"
+
+
 if __name__ == "__main__":
     pytest.main()

@@ -32,3 +32,12 @@ class Category:
 
     def __str__(self):
         return f"Название категории: {self.name}, количество продуктов: {Category.product_count} шт."
+
+    def middle_price(self):
+        try:
+            total_price = sum(product.price for product in self.__products)
+            average = total_price / len(self.__products)
+            return average
+        except ZeroDivisionError:
+            print("Нет товаров в категории, поэтому средняя цена не может быть рассчитана.")
+            return 0
