@@ -108,6 +108,7 @@
 #         self.color = color
 from abc import ABC, abstractmethod
 
+
 class BaseProduct(ABC):
     @abstractmethod
     def __init__(self, name, description, price, quantity):
@@ -165,7 +166,6 @@ class Product(ProductCreationInfo, BaseProduct):
     @property
     def price(self):
         return self._price
-
 
     @price.setter
     def price(self, value):
